@@ -1,16 +1,27 @@
 package com.comp3004.CMS.base;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class Student extends User{
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY, generator="native")
     private long id;
     private String firstName;
     private String lastName;
     private String program;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+            })
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id")
+    )
+    public Set<Course> registered = new HashSet<>();
 
     public Student(){
         super();
@@ -25,20 +36,20 @@ public class Student extends User{
     }
 
     // Getter Setter
+
     public String getFirstName(){ return firstName; }
     public String getLastName(){ return lastName; }
     public String getProgram(){ return program; }
     public long getId(){ return id; }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public Set<Course> getRegistered() { return registered; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
     public void setProgram(String newProgram){
         this.program = newProgram;
     }
+
 
     @Override
     public String toString() {

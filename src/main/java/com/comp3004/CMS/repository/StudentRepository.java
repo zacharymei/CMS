@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository extends CrudRepository<Student, Long>{
 
     List<Student> findByLastName(String lastName);
-    List<Student> findById(long Id);
+    Student findById(long Id);
 }
