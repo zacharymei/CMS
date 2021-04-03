@@ -2,6 +2,7 @@ package com.comp3004.CMS.services;
 
 import com.comp3004.CMS.base.*;
 import java.util.List;
+import java.util.Set;
 
 import com.comp3004.CMS.base.User;
 import com.comp3004.CMS.repository.StudentRepository;
@@ -35,11 +36,16 @@ public class StudentService {
         return true;
     }
 
-    public boolean register(long student_id, Course c){
+    public boolean register(long student_id, Session c){
         Student s = studentRepository.findById(student_id);
         s.registerCourse(c);
         studentRepository.save(s);
         return true;
+    }
+
+    public Set<Session> studentRegistered(long id){
+        Student s = findById(id);
+        return s.getCourses();
     }
 
 }

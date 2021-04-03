@@ -3,6 +3,7 @@ package com.comp3004.CMS.controller;
 import com.comp3004.CMS.base.*;
 import com.comp3004.CMS.repository.CourseRepository;
 import com.comp3004.CMS.services.CourseService;
+import com.comp3004.CMS.services.SessionService;
 import com.comp3004.CMS.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ public class RestController {
     private StudentService studentService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private SessionService sessionService;
 
     @GetMapping("/")
     @ResponseBody
@@ -25,45 +28,21 @@ public class RestController {
         return "hello world";
     }
 
-    @GetMapping("/addStudent")
-    @ResponseBody
-    public String addStudent(@RequestParam("firstname") String fn, @RequestParam("lastname") String ln, @RequestParam("program") String program, @RequestParam("password") String pw){
-        if(studentService.addStudent(fn, ln, program, pw)){ return "Student generated"; }
-        return "Student failed";
-    }
-
-    @GetMapping("/students")
-    @ResponseBody
-    public List<Student> getStudents(){
-        return studentService.findAll();
-    }
-
-    @GetMapping("/addCourse")
-    @ResponseBody
-    public String addCourse(@RequestParam("program") String p, @RequestParam("number") String number){
-        if(courseService.addCourse(p, number)){ return "Course generated"; }
-        return "Course failed";
-    }
 
 
-    @GetMapping("/courses")
-    @ResponseBody
-    public List<Course> getCourses(){
-        return courseService.findAll();
-    }
 
     @GetMapping("/register")
     @ResponseBody
     public String studentRegister(@RequestParam("sid") long sid, @RequestParam("cid") long cid){
-        Course c = courseService.findById(cid);
+        Session c = sessionService.findById(cid);
         Student s = studentService.findById(sid);
 
         studentService.register(sid, c);
-        courseService.register(cid, s);
+        sessionService.register(cid, s);
 
-        //System.out.println(studentService.findById(sid).getCourses().toString());
-        //System.out.println(courseService.findById(cid).getRegistered().toString());
         return "Successfully register";
     }
+
+
 
 }

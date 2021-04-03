@@ -12,27 +12,16 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public List<Course> findAll(){
-        return (List<Course>) courseRepository.findAll();
+    public List<Session> findAll(){
+        return (List<Session>) courseRepository.findAll();
     }
 
     public Course findById(long id){
         return courseRepository.findById(id);
     }
 
-    public boolean addCourse(String program, String number){
-        Course c = new Course();
-        c.setProgram(program);
-        c.setNumber(number);
-        courseRepository.save(c);
-        return true;
-    }
 
-    public boolean register(long id, Student s){
-        Course c = courseRepository.findById(id);
-        c.register(s);
-        courseRepository.save(c);
-        return true;
-    }
+
+
 
 }

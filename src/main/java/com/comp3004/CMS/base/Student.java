@@ -24,7 +24,7 @@ public class Student extends User{
             CascadeType.ALL
             })
     @JoinTable(joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
-    private Set<Course> courses;
+    private Set<Session> courses;
 
     public Student(){
         super();
@@ -46,7 +46,7 @@ public class Student extends User{
     public String getProgram(){ return program; }
     public long getId(){ return id; }
 
-    public Set<Course> getCourses() { return courses; }
+    public Set<Session> getCourses() { return courses; }
 
 
 
@@ -68,11 +68,11 @@ public class Student extends User{
                 '}';
     }
 
-    public void registerCourse(Course c){
+    public void registerCourse(Session c){
         courses.add(c);
     }
 
-    public void dropCourse(Course c){
+    public void dropCourse(Session c){
         courses.remove(c);
     }
 
