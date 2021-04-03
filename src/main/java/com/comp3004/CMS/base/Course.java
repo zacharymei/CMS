@@ -1,24 +1,32 @@
 package com.comp3004.CMS.base;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Course {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY, generator="native")
-    private long Id;
+    @SequenceGenerator(name="courseSeq", initialValue=30000, allocationSize=9999)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="courseSeq")
+    private long id;
 
     private String program;
     private String number;
     private long professor;
 
-    @ManyToMany(mappedBy = "registered", fetch = FetchType.LAZY)
-    private Set<Student> registered = new HashSet<>();
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Student> registered;
 
-    public long getId() { return Id; }
+
+    public Course() {
+        this.registered = new HashSet<>();
+    }
+
+    public long getId() { return id; }
 
     public String getProgram() { return program; }
 
@@ -34,5 +42,19 @@ public class Course {
 
     public Set<Student> getRegistered() { return registered; }
 
-    public void setRegistered(Set<Student> registered) { this.registered = registered; }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "Id=" + id +
+                ", program='" + program + '\'' +
+                ", number='" + number + '\'' +
+                ", professor=" + professor +
+                ", registered=" + registered.toString() +
+                '}';
+    }
+
+    public void register(Student s){
+        registered.add(s);
+    }
 }

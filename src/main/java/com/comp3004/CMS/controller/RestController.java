@@ -2,7 +2,8 @@ package com.comp3004.CMS.controller;
 
 import com.comp3004.CMS.base.*;
 import com.comp3004.CMS.repository.CourseRepository;
-import com.comp3004.CMS.repository.StudentRepository;
+import com.comp3004.CMS.services.CourseService;
+import com.comp3004.CMS.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,9 @@ import java.util.*;
 @Controller
 public class RestController {
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentService studentService;
     @Autowired
-    private CourseRepository courseRepository;
+    private CourseService courseService;
 
     @GetMapping("/")
     @ResponseBody
@@ -26,49 +27,43 @@ public class RestController {
 
     @GetMapping("/addStudent")
     @ResponseBody
-    public String addStudent(@RequestParam Map<String, String> customQuery){
-        Student s = new Student();
-        s.setFirstName(customQuery.get("firstname"));
-        s.setLastName(customQuery.get("lastname"));
-        s.setProgram(customQuery.get("program"));
-        ((User)s).setUsername(customQuery.get("firstname") + customQuery.get("lastname"));
-        ((User)s).setPassword(customQuery.get("password"));
-        //Student s = new Student(customQuery.get("firstname"), customQuery.get("lastname"), customQuery.get("program"), customQuery.get("password"));
-        studentRepository.save(s);
-        return "Saved";
-    }
-
-    @GetMapping("/addCourse")
-    @ResponseBody
-    public String addCourse(@RequestParam Map<String, String> customQuery){
-        Course c = new Course();
-        c.setProgram(customQuery.get("program"));
-        c.setNumber(customQuery.get("number"));
-        //c.setProfessor(customQuery.get("prof"));
-        //Student s = new Student(customQuery.get("firstname"), customQuery.get("lastname"), customQuery.get("program"), customQuery.get("password"));
-        courseRepository.save(c);
-        return "Saved";
+    public String addStudent(@RequestParam("firstname") String fn, @RequestParam("lastname") String ln, @RequestParam("program") String program, @RequestParam("password") String pw){
+        if(studentService.addStudent(fn, ln, program, pw)){ return "Student generated"; }
+        return "Student failed";
     }
 
     @GetMapping("/students")
     @ResponseBody
-    public Iterable<Student> getStudents(){
-        return studentRepository.findAll();
+    public List<Student> getStudents(){
+        return studentService.findAll();
     }
+
+    @GetMapping("/addCourse")
+    @ResponseBody
+    public String addCourse(@RequestParam("program") String p, @RequestParam("number") String number){
+        if(courseService.addCourse(p, number)){ return "Course generated"; }
+        return "Course failed";
+    }
+
 
     @GetMapping("/courses")
     @ResponseBody
-    public Iterable<Course> getCourses(){
-        return courseRepository.findAll();
+    public List<Course> getCourses(){
+        return courseService.findAll();
     }
 
     @GetMapping("/register")
     @ResponseBody
     public String studentRegister(@RequestParam("sid") long sid, @RequestParam("cid") long cid){
-        studentRepository.findById(sid).getRegistered().add(courseRepository.findById(cid));
-        courseRepository.findById(cid).getRegistered().add(studentRepository.findById(sid));
-        System.out.println(studentRepository.findById(sid).getRegistered());
-        return "succeed";
+        Course c = courseService.findById(cid);
+        Student s = studentService.findById(sid);
+
+        studentService.register(sid, c);
+        courseService.register(cid, s);
+
+        //System.out.println(studentService.findById(sid).getCourses().toString());
+        //System.out.println(courseService.findById(cid).getRegistered().toString());
+        return "Successfully register";
     }
 
 }

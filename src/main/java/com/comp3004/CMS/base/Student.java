@@ -3,28 +3,32 @@ package com.comp3004.CMS.base;
 import javax.persistence.*;
 import java.util.*;
 
+
 @Entity
+@SequenceGenerator(name="userGen", sequenceName = "studentSeq", initialValue=10000, allocationSize=9999)
 public class Student extends User{
 
+
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY, generator="native")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userGen")
     private long id;
+
     private String firstName;
+
     private String lastName;
+
     private String program;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
+            CascadeType.ALL
             })
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id")
-    )
-    public Set<Course> registered = new HashSet<>();
+    @JoinTable(joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private Set<Course> courses;
 
     public Student(){
         super();
+        this.courses = new HashSet<>();
     }
 
     public Student(String fn, String ln, String program, String password){
@@ -42,7 +46,9 @@ public class Student extends User{
     public String getProgram(){ return program; }
     public long getId(){ return id; }
 
-    public Set<Course> getRegistered() { return registered; }
+    public Set<Course> getCourses() { return courses; }
+
+
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
@@ -58,15 +64,16 @@ public class Student extends User{
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", program='" + program + '\'' +
+                ", courses=" + courses.toString() +
                 '}';
     }
 
     public void registerCourse(Course c){
-        // interact with DB
+        courses.add(c);
     }
 
     public void dropCourse(Course c){
-        // interact with DB
+        courses.remove(c);
     }
 
     public void submitDeliverable(Deliverable d){
