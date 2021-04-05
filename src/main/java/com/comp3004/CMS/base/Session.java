@@ -9,6 +9,9 @@ public class Session extends Course implements Observer {
     private String term;
     private String session;
     private String time;
+    @ManyToOne
+    @JoinColumn(name="course_id")
+    private Professor professor;
 
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "professor_id", referencedColumnName = "id")
@@ -71,14 +74,20 @@ public class Session extends Course implements Observer {
         super.setNumber(number);
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        if(arg.equals("register")){
+    @Override()
+    public void update(Observable o, Object arg){
+        if(arg.equals("register")) {
             register((Student) o);
         }
-        if(arg.equals("drop")){
+        if(arg.equals("drop"){
             drop((Student) o);
         }
-
+        if(arg.equals("assign")){
+            professor = (Professor)o;
+        }
+        if(arg.equals("remove")){
+            professor = null;
+        }
     }
+
 }
