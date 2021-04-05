@@ -1,6 +1,7 @@
 package com.comp3004.CMS.controller;
 
 import com.comp3004.CMS.base.*;
+import com.comp3004.CMS.services.AdminService;
 import com.comp3004.CMS.services.CourseService;
 import com.comp3004.CMS.services.SessionService;
 import com.comp3004.CMS.services.StudentService;
@@ -19,6 +20,8 @@ public class RestController {
     private CourseService courseService;
     @Autowired
     private SessionService sessionService;
+    @Autowired
+    private AdminService adminService;
 
     @GetMapping("/")
     @ResponseBody
@@ -58,11 +61,34 @@ public class RestController {
         return authorization(role, username, password);
     }
 
+    @PostMapping("/logout")
+    @ResponseBody
+    public String userlogout(@RequestParam String username, @RequestParam String role){
+        if(role.equals("student")){
+            if(studentService.logout(username)){
+                return "Logout Succeed. ";
+            }
+        }
+        if(role.equals("admin")){
+            if(adminService.logout()){
+                return "Logout Succeed. ";
+            }
+        }
+        return "Logout Failed. ";
+    }
+
+
     public String authorization(String role, String username, String password){
 
         if(role.equals("student")){
-            studentService.login(username, password);
-            return "student";
+            if(studentService.login(username, password)){
+                return "student";
+            }
+        }
+        if(role.equals("admin")){
+            if(adminService.login(username, password)){
+                return "admin";
+            }
         }
 
 

@@ -46,6 +46,16 @@ public class StudentService{
         return true;
     }
 
+    public boolean deleteStudent(long student_id){
+        if(studentRepository.findById(student_id) != null){
+            Student s = studentRepository.findById(student_id);
+            s.delete();
+            studentRepository.delete(s);
+            return true;
+        }
+        return false;
+    }
+
     public boolean register(long student_id, Session c){
         Student s = studentRepository.findById(student_id);
         s.registerCourse(c);
@@ -73,6 +83,16 @@ public class StudentService{
                 studentRepository.save(s);
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean logout(String username){
+        if(studentRepository.findStudentByUsernameEquals(username) != null){
+            Student s = studentRepository.findStudentByUsernameEquals(username);
+            s.logout();
+            studentRepository.save(s);
+            return true;
         }
         return false;
     }

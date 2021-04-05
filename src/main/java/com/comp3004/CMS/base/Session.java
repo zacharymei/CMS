@@ -13,9 +13,6 @@ public class Session extends Course implements Observer {
     @JoinColumn(name="course_id")
     private Professor professor;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "professor_id", referencedColumnName = "id")
-//    private Professor professor;
 
     @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Student> registered;
@@ -79,7 +76,7 @@ public class Session extends Course implements Observer {
         if(arg.equals("register")) {
             register((Student) o);
         }
-        if(arg.equals("drop"){
+        if(arg.equals("drop")){
             drop((Student) o);
         }
         if(arg.equals("assign")){
@@ -87,6 +84,9 @@ public class Session extends Course implements Observer {
         }
         if(arg.equals("remove")){
             professor = null;
+        }
+        if(arg.equals("deleteStudent")){
+            registered.remove((Student) o);
         }
     }
 

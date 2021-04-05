@@ -87,6 +87,11 @@ public class Student extends User{
         deleteObserver(c);
     }
 
+    public void delete(){
+        setChanged();
+        notifyObservers("deleteStudent");
+    }
+
     public void submitDeliverable(Deliverable d){
         // soon
     }
