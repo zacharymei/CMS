@@ -18,6 +18,8 @@ public abstract class User extends Observable{
     private String username;
     private String password;
 
+    private boolean loggedin = false;
+
 //    @OneToOne
 //    private Set<Long> studentUsers = new HashSet<Long>();
 
@@ -49,5 +51,13 @@ public abstract class User extends Observable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void login(){
+        loggedin = true;
+    }
+
+    public void logout(){
+        loggedin = false;
     }
 }

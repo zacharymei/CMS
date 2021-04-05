@@ -25,6 +25,8 @@ public class Session extends Course implements Observer {
         registered.add(s);
     }
 
+    public void drop(Student s) { registered.remove(s); }
+
 
 
 
@@ -76,6 +78,9 @@ public class Session extends Course implements Observer {
     public void update(Observable o, Object arg){
         if(arg.equals("register")) {
             register((Student) o);
+        }
+        if(arg.equals("drop"){
+            drop((Student) o);
         }
         if(arg.equals("assign")){
             professor = (Professor)o;

@@ -31,7 +31,14 @@ public class StudentService{
         s.setFirstName(firstname);
         s.setLastName(lastname);
         s.setProgram(program);
-        ((User)s).setUsername(firstname+lastname);
+
+        String username = firstname.toLowerCase()+lastname.toLowerCase();
+        if(studentRepository.countStudentByUsernameContains(username) > 0){
+            username = username + Integer.toString(studentRepository.countStudentByUsernameContains(username)+1);
+
+        }
+
+        ((User)s).setUsername(username);
         ((User)s).setPassword(password);
 
         studentRepository.save(s);
@@ -46,9 +53,28 @@ public class StudentService{
         return true;
     }
 
+    public boolean drop(long sid, Session c){
+        Student s = studentRepository.findById(sid);
+        s.dropCourse(c);
+        studentRepository.save(s);
+        return true;
+    }
+
     public Set<Session> studentRegistered(long id){
         Student s = findById(id);
         return s.getCourses();
+    }
+
+    public boolean login(String username, String password){
+        if(studentRepository.findStudentByUsernameEquals(username) != null){
+            Student s = studentRepository.findStudentByUsernameEquals(username);
+            if(s.getPassword().equals(password)){
+                s.login();
+                studentRepository.save(s);
+                return true;
+            }
+        }
+        return false;
     }
 
 }
