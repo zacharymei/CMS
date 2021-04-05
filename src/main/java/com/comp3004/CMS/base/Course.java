@@ -1,13 +1,10 @@
 package com.comp3004.CMS.base;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @MappedSuperclass
-public abstract class Course {
+public abstract class Course extends Observable {
 
     @Id
     @SequenceGenerator(name="courseSeq", initialValue=10000)

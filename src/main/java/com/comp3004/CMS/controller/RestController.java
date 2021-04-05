@@ -38,7 +38,7 @@ public class RestController {
         Student s = studentService.findById(sid);
 
         studentService.register(sid, c);
-        sessionService.register(cid, s);
+        sessionService.save(c);
 
         return "Successfully register";
     }

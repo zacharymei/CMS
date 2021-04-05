@@ -4,13 +4,13 @@ package com.comp3004.CMS.base;
 
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.*;
 import java.util.Set;
 
 //@Entity
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
-public abstract class User {
+public abstract class User extends Observable{
 
     //@Id
     //@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userGen")

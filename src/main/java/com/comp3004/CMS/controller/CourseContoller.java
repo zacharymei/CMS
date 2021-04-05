@@ -38,4 +38,10 @@ public class CourseContoller {
         return "Course failed";
     }
 
+    @GetMapping("/courseRegistered")
+    @ResponseBody
+    public String courseRegistered(@RequestParam long cid){
+        return sessionService.findById(cid).getRegistered().toString();
+    }
+
 }

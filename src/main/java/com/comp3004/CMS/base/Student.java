@@ -26,6 +26,12 @@ public class Student extends User{
     @JoinTable(joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Session> courses;
 
+
+
+
+
+
+
     public Student(){
         super();
         this.courses = new HashSet<>();
@@ -70,10 +76,14 @@ public class Student extends User{
 
     public void registerCourse(Session c){
         courses.add(c);
+        addObserver(c);
+        setChanged();
+        notifyObservers();
     }
 
     public void dropCourse(Session c){
         courses.remove(c);
+        
     }
 
     public void submitDeliverable(Deliverable d){

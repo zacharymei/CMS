@@ -2,6 +2,7 @@ package com.comp3004.CMS.services;
 
 import com.comp3004.CMS.base.*;
 import java.util.List;
+import java.util.*;
 import java.util.Set;
 
 import com.comp3004.CMS.base.User;
@@ -10,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentService {
+public class StudentService{
 
     @Autowired
     private StudentRepository studentRepository;
+
+
 
     public List<Student> findAll(){
         return (List<Student>) studentRepository.findAll();

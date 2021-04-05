@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class SessionService {
+public class SessionService{
 
     @Autowired
     private CourseRepository courseRepository;
@@ -21,6 +21,10 @@ public class SessionService {
 
     public Session findById(long id){
         return courseRepository.findById(id);
+    }
+
+    public void save(Session c){
+        courseRepository.save(c);
     }
 
     public boolean addCourse(String program, String number, String session, String term, String time){
@@ -40,5 +44,12 @@ public class SessionService {
         courseRepository.save(c);
         return true;
     }
+
+    public Set<Student> courseRegistered(long id){
+        Session c = findById(id);
+        return c.getRegistered();
+    }
+
+
 
 }

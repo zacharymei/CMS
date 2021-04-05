@@ -1,11 +1,10 @@
 package com.comp3004.CMS.base;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-public class Session extends Course{
+public class Session extends Course implements Observer {
 
     private String term;
     private String session;
@@ -58,11 +57,20 @@ public class Session extends Course{
         this.time = time;
     }
 
+    public Set<Student> getRegistered(){
+        return this.registered;
+    }
+
     public void setProgram(String program){
         super.setProgram(program);
     }
 
     public void setNumber(String number){
         super.setNumber(number);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        register((Student) o);
     }
 }
