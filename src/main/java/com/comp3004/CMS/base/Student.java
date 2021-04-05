@@ -78,7 +78,7 @@ public class Student extends User{
         courses.add(c);
         addObserver(c);
         setChanged();
-        notifyObservers();
+        notifyObservers("register");
     }
 
     public void dropCourse(Session c){
