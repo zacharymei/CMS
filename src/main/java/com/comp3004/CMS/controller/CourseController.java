@@ -4,6 +4,7 @@ import com.comp3004.CMS.base.Session;
 import com.comp3004.CMS.repository.CourseRepository;
 import com.comp3004.CMS.services.CourseService;
 import com.comp3004.CMS.services.SessionService;
+import com.comp3004.CMS.controller.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import javax.jws.Oneway;
 import java.util.List;
 
 @Controller
-public class CourseContoller {
+public class CourseController{
 
     @Autowired
     CourseService courseService;

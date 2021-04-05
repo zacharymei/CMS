@@ -70,7 +70,6 @@ public class Student extends User{
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", program='" + program + '\'' +
-                ", courses=" + courses.toString() +
                 '}';
     }
 
@@ -78,12 +77,14 @@ public class Student extends User{
         courses.add(c);
         addObserver(c);
         setChanged();
-        notifyObservers();
+        notifyObservers("register");
     }
 
     public void dropCourse(Session c){
         courses.remove(c);
-        
+        setChanged();
+        notifyObservers("drop");
+        deleteObserver(c);
     }
 
     public void submitDeliverable(Deliverable d){
