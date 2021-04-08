@@ -1,5 +1,7 @@
 package com.comp3004.CMS.base;
 
+import com.comp3004.CMS.base.deliverables.Deliverable;
+
 import javax.persistence.*;
 import java.util.*;
 

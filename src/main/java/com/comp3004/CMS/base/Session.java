@@ -1,5 +1,9 @@
 package com.comp3004.CMS.base;
 
+import com.comp3004.CMS.base.deliverables.Deliverable;
+import com.comp3004.CMS.base.deliverables.factory.DeliverableFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -16,6 +20,10 @@ public class Session extends Course implements Observer {
 
     @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Student> registered;
+
+    @OneToMany(mappedBy = "course")
+    private Set<Deliverable> deliverables;
+
 
 
     public void register(Student s){
@@ -70,6 +78,11 @@ public class Session extends Course implements Observer {
     public void setNumber(String number){
         super.setNumber(number);
     }
+
+    public Set<Deliverable> getDeliverables() {
+        return deliverables;
+    }
+
 
     @Override()
     public void update(Observable o, Object arg){
