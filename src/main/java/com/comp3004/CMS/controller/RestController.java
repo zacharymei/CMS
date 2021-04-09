@@ -7,6 +7,7 @@ import com.comp3004.CMS.services.SessionService;
 import com.comp3004.CMS.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,9 +56,19 @@ public class RestController {
         return "Successfully drop";
     }
 
+    @GetMapping("/login")
+    public String getLogin(Model model){
+        return "redirect:/login.html";
+    }
+
     @PostMapping("/login")
     @ResponseBody
     public String userlogin(@RequestParam String username, @RequestParam String password, @RequestParam String role){
+
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println(role);
+
         return authorization(role, username, password);
     }
 
