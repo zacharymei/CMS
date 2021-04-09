@@ -65,10 +65,6 @@ public class RestController {
     @ResponseBody
     public String userlogin(@RequestParam String username, @RequestParam String password, @RequestParam String role){
 
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(role);
-
         return authorization(role, username, password);
     }
 
