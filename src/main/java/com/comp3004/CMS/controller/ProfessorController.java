@@ -19,6 +19,7 @@ public class ProfessorController {
     @Autowired
     SessionService sessionService;
 
+
     @PostMapping("/createDeliverable")
     @ResponseBody
     public String createDeliverable(@RequestParam long cid, @RequestParam String deliverable, @RequestParam String type){
@@ -30,6 +31,15 @@ public class ProfessorController {
     @ResponseBody
     public String deliverables(@RequestParam long cid){
         return sessionService.findById(cid).getDeliverables().toString();
+    }
+
+    @PostMapping("/gradeDeliverable")
+    @ResponseBody
+    public String gradeDeliverable(@RequestParam long sid, @RequestParam long did, @RequestParam double grade){
+
+        deliverableService.gradeDeliverable(sid, did, grade);
+
+        return "Grade Successful";
     }
 
 

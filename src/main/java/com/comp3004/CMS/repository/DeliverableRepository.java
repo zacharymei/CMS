@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeliverableRepository extends JpaRepository<Deliverable, Long> {
+
+    Deliverable findById(long did);
+
+
 }

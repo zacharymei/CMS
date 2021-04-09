@@ -32,7 +32,7 @@ public class RestController {
 
 
 
-    @GetMapping("/register")
+    @PostMapping("/register")
     @ResponseBody
     public String studentRegister(@RequestParam("sid") long sid, @RequestParam("cid") long cid){
         Session c = sessionService.findById(cid);
@@ -44,7 +44,7 @@ public class RestController {
         return "Successfully register";
     }
 
-    @GetMapping("/drop")
+    @PostMapping("/drop")
     @ResponseBody
     public String studentDrop(@RequestParam("sid") long sid, @RequestParam("cid") long cid){
         Session c = sessionService.findById(cid);

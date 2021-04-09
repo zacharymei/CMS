@@ -14,6 +14,13 @@ public class AdminService {
         return admin.getLoggedin();
     }
 
+    public boolean loggedIn() {
+        if(admin.getLoggedin() == true){
+            return true;
+        }
+        return false;
+    }
+
     public boolean logout(){
         admin.logout();
         return true;

@@ -5,10 +5,7 @@ import com.comp3004.CMS.services.AdminService;
 import com.comp3004.CMS.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class StudentController{
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/addStudent")
+    @PostMapping ("/addStudent")
     @ResponseBody
     public String addStudent(@RequestParam("firstname") String fn, @RequestParam("lastname") String ln, @RequestParam("program") String program, @RequestParam("password") String pw){
         if(adminService.getLoggedin()){
@@ -53,8 +50,8 @@ public class StudentController{
 
     @GetMapping("/students")
     @ResponseBody
-    public List<Student> getStudents(){
-        return studentService.findAll();
+    public String getStudents(){
+        return studentService.showAll();
     }
 
     @GetMapping("/studentRegistered")

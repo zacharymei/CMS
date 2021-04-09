@@ -18,8 +18,8 @@ public class StudentService{
 
 
 
-    public List<Student> findAll(){
-        return (List<Student>) studentRepository.findAll();
+    public String showAll(){
+        return studentRepository.findAll().toString();
     }
 
     public Student findById(long id){

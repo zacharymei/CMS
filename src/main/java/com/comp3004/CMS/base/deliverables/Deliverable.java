@@ -1,11 +1,13 @@
 package com.comp3004.CMS.base.deliverables;
 
-import com.comp3004.CMS.base.Course;
 import com.comp3004.CMS.base.Session;
+import com.comp3004.CMS.base.Student;
+import com.comp3004.CMS.base.StudentGrade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -17,6 +19,7 @@ public class Deliverable {
     private long id;
     private String name;
 
+
     private double weight;
     private LocalDate due;
 
@@ -26,6 +29,9 @@ public class Deliverable {
     @ManyToOne
     @JoinColumn(name="deliverable_id")
     private Session course;
+
+    @OneToMany(mappedBy = "deliverable")
+    Set<StudentGrade> studentGrades;
 
 
     //<editor-fold desc="Getter Setter">
@@ -72,6 +78,8 @@ public class Deliverable {
     public void setCourse(Session c){
         this.course = c;
     }
+
+    public Set<StudentGrade> getStudentGrades() { return this.studentGrades; }
     //</editor-fold>
 
 

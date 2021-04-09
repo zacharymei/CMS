@@ -29,6 +29,11 @@ public class Student extends User{
     private Set<Session> courses;
 
 
+    @OneToMany(mappedBy = "student")
+    Set<StudentGrade> deliverableGrades;
+
+
+
 
 
 
@@ -55,6 +60,7 @@ public class Student extends User{
     public long getId(){ return id; }
 
     public Set<Session> getCourses() { return courses; }
+    public Set<StudentGrade> getDeliverableGrades() { return deliverableGrades; }
 
 
 
