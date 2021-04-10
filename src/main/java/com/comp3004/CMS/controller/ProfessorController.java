@@ -1,7 +1,9 @@
 package com.comp3004.CMS.controller;
 
 import com.comp3004.CMS.base.Session;
-import com.comp3004.CMS.services.*;
+import com.comp3004.CMS.services.CourseService;
+import com.comp3004.CMS.services.DeliverableService;
+import com.comp3004.CMS.services.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,21 +18,7 @@ public class ProfessorController {
     DeliverableService deliverableService;
     @Autowired
     SessionService sessionService;
-    @Autowired
-    private ProfessorService professorService;
-    @Autowired
-    private AdminService adminService;
 
-    @PostMapping ("/addProfessor")
-    @ResponseBody
-    public String addProfessor(@RequestParam("firstname") String fn, @RequestParam("lastname") String ln, @RequestParam("program") String program, @RequestParam("password") String pw){
-        if(adminService.getLoggedin()){
-            if(professorService.addProfessor(fn, ln, program, pw)){ return "Professor generated"; }
-        }else{
-            return "Permission denied. ";
-        }
-        return "Add Professor failed";
-    }
 
     @PostMapping("/createDeliverable")
     @ResponseBody
