@@ -43,9 +43,8 @@ public class RestController {
 
 
     @GetMapping("/")
-    @ResponseBody
     public String greeting() {
-        return "hello world";
+        return "redirect:/login";
     }
 
     @GetMapping("test")
