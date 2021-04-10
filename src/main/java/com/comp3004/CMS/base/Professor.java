@@ -1,8 +1,11 @@
 package com.comp3004.CMS.base;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Set;
 
 @Entity
@@ -18,8 +21,13 @@ public class Professor extends User{
 
     private String program;
 
+    @JsonIgnore
     @OneToMany(mappedBy="professor")
     private Set<Session> courses;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "professor")
+    private Set<StudentGrade> studentGrades;
 
     //constructor
     public Professor(){
@@ -79,12 +87,6 @@ public class Professor extends User{
                 '}';
     }
 
-    public void assignCourse(Session c){
-        courses.add(c);
-        addObserver(c);
-        setChanged();
-        notifyObservers("assign");
-    }
 
     public void removeCourse(Session c){
         courses.remove(c);
@@ -94,4 +96,15 @@ public class Professor extends User{
     }
 
 
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg.equals("StudentGrade")){
+            studentGrades.add((StudentGrade) o);
+        }
+        if(arg.equals("Session")){
+            courses.add((Session) o);
+        }
+        setChanged();
+        notifyObservers();
+    }
 }

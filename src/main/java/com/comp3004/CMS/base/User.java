@@ -10,7 +10,7 @@ import java.util.Set;
 //@Entity
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
-public abstract class User extends Observable{
+public abstract class User extends Observable implements Observer{
 
     //@Id
     //@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userGen")

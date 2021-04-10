@@ -1,11 +1,15 @@
 package com.comp3004.CMS.controller;
 
+import com.comp3004.CMS.base.Session;
 import com.comp3004.CMS.base.Student;
 import com.comp3004.CMS.services.AdminService;
+import com.comp3004.CMS.services.SessionService;
 import com.comp3004.CMS.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -16,35 +20,35 @@ public class StudentController{
     private StudentService studentService;
     @Autowired
     private  RestController restController;
+
     @Autowired
-    private AdminService adminService;
+    SessionService sessionService;
+    @Autowired
+    AdminService adminService;
+
 
     @PostMapping ("/addStudent")
     @ResponseBody
     public String addStudent(@RequestParam("firstname") String fn, @RequestParam("lastname") String ln, @RequestParam("program") String program, @RequestParam("password") String pw){
-        if(adminService.getLoggedin()){
-            if(studentService.addStudent(fn, ln, program, pw)){ return "Student generated"; }
-        }else{
-            return "Permission denied. ";
+
+        if(studentService.addStudent(fn, ln, program, pw)){
+            return "Student generated";
         }
 
-
-
-        return "Add Student failed";
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Add Student failed");
+        //return "Add Student failed";
     }
 
     @DeleteMapping("/deleteStudent")
     @ResponseBody
     public String deleteStudent(@RequestParam long id){
-        if(adminService.getLoggedin()){
-            if(studentService.deleteStudent(id)){
-                return "Delete Succeed. ";
-            }
-        }else{
-            return "Permission denied. ";
+
+        if(studentService.deleteStudent(id)){
+            return "Delete Succeed. ";
         }
 
-        return "Delete Student failed";
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Delete Student failed");
+        //return "Delete Student failed";
     }
 
 
@@ -52,6 +56,36 @@ public class StudentController{
     @ResponseBody
     public String getStudents(){
         return studentService.showAll();
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public String studentRegister(@RequestParam("sid") long sid, @RequestParam("cid") long cid){
+
+
+        Session c = sessionService.findById(cid);
+        Student s = studentService.findById(sid);
+
+        if(studentService.register(sid, c)){
+            return "Registration succeed. ";
+        }
+
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Registration failed. ");
+        //return "Registration failed. ";
+    }
+
+    @PostMapping("/drop")
+    @ResponseBody
+    public String studentDrop(@RequestParam("sid") long sid, @RequestParam("cid") long cid){
+        Session c = sessionService.findById(cid);
+        Student s = studentService.findById(sid);
+
+        if(studentService.drop(sid, c)){
+            return "Successfully drop";
+        }
+
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "fail drop");
+        //return "fail drop";
     }
 
     @GetMapping("/studentRegistered")
