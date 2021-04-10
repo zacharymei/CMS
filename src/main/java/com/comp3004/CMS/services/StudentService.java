@@ -6,15 +6,22 @@ import java.util.*;
 import java.util.Set;
 
 import com.comp3004.CMS.base.User;
+import com.comp3004.CMS.controller.RestController;
 import com.comp3004.CMS.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class StudentService{
+@Transactional
+public class StudentService implements Observer{
 
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    AdminService adminService;
+    @Autowired
+    RestController restController;
 
 
 
@@ -27,6 +34,11 @@ public class StudentService{
     }
 
     public boolean addStudent(String firstname, String lastname, String program, String password){
+
+        if(!adminService.loggedIn()){
+            return false;
+        }
+
         Student s = new Student();
         s.setFirstName(firstname);
         s.setLastName(lastname);
@@ -41,12 +53,18 @@ public class StudentService{
         ((User)s).setUsername(username);
         ((User)s).setPassword(password);
 
+        s.addObserver(this);
         studentRepository.save(s);
 
         return true;
     }
 
     public boolean deleteStudent(long student_id){
+
+        if(!adminService.loggedIn()){
+            return false;
+        }
+
         if(studentRepository.findById(student_id) != null){
             Student s = studentRepository.findById(student_id);
             s.delete();
@@ -57,16 +75,24 @@ public class StudentService{
     }
 
     public boolean register(long student_id, Session c){
+
+        if(!adminService.loggedIn() && !RestController.role.equals("Student")){
+            return false;
+        }
+
         Student s = studentRepository.findById(student_id);
         s.registerCourse(c);
-        studentRepository.save(s);
         return true;
     }
 
     public boolean drop(long sid, Session c){
+
+        if(!adminService.loggedIn() && !RestController.role.equals("Student")){
+            return false;
+        }
+
         Student s = studentRepository.findById(sid);
         s.dropCourse(c);
-        studentRepository.save(s);
         return true;
     }
 
@@ -80,7 +106,6 @@ public class StudentService{
             Student s = studentRepository.findStudentByUsernameEquals(username);
             if(s.getPassword().equals(password)){
                 s.login();
-                studentRepository.save(s);
                 return true;
             }
         }
@@ -91,10 +116,13 @@ public class StudentService{
         if(studentRepository.findStudentByUsernameEquals(username) != null){
             Student s = studentRepository.findStudentByUsernameEquals(username);
             s.logout();
-            studentRepository.save(s);
             return true;
         }
         return false;
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        studentRepository.save((Student) o);
+    }
 }

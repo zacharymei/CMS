@@ -4,11 +4,15 @@ import com.comp3004.CMS.base.*;
 import com.comp3004.CMS.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 @Service
-public class CourseService {
+@Transactional
+public class CourseService implements Observer {
     @Autowired
     private CourseRepository courseRepository;
 
@@ -21,7 +25,8 @@ public class CourseService {
     }
 
 
-
-
-
+    @Override
+    public void update(Observable o, Object arg) {
+        courseRepository.save((Session) o);
+    }
 }

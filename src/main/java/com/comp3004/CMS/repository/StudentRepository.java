@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -24,4 +25,8 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     Set<Student> findStudentByPasswordEquals(String password);
 
     int countStudentByUsernameContains(String username);
+
+    @Query("select s.id from Student s where s.program = :program")
+    Set<Long> findStudentIdByProgramEquals(@Param("program") String program);
+
 }

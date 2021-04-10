@@ -18,6 +18,10 @@ public class Lecture extends Deliverable{
         super.setWeight(weight);
         super.setDue(due);
         super.setCourse(c);
+        super.addObserver(c);
+
+        super.setChanged();
+        super.notifyObservers("Deliverable");
     }
 
 }

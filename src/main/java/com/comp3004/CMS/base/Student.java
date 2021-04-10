@@ -1,12 +1,15 @@
 package com.comp3004.CMS.base;
 
 import com.comp3004.CMS.base.deliverables.Deliverable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.*;
 
 
 @Entity
+//@JsonIgnoreProperties()
 @SequenceGenerator(name="userGen", sequenceName = "studentSeq", initialValue=10000, allocationSize=9999)
 public class Student extends User{
 
@@ -22,13 +25,14 @@ public class Student extends User{
 
     private String program;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, cascade = {
             CascadeType.ALL
             })
     @JoinTable(joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Session> courses;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "student")
     Set<StudentGrade> deliverableGrades;
 
@@ -104,4 +108,12 @@ public class Student extends User{
         // soon
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg.equals("StudentGrade")){
+            this.deliverableGrades.add((StudentGrade) o);
+        }
+        setChanged();
+        notifyObservers();
+    }
 }

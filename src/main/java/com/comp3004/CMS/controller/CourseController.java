@@ -1,17 +1,15 @@
 package com.comp3004.CMS.controller;
 
 import com.comp3004.CMS.base.Session;
+import com.comp3004.CMS.base.StudentGrade;
 import com.comp3004.CMS.repository.CourseRepository;
-import com.comp3004.CMS.services.AdminService;
-import com.comp3004.CMS.services.CourseService;
-import com.comp3004.CMS.services.SessionService;
+import com.comp3004.CMS.services.*;
 import com.comp3004.CMS.controller.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.jws.Oneway;
 import java.util.List;
@@ -24,7 +22,9 @@ public class CourseController{
     @Autowired
     SessionService sessionService;
     @Autowired
-    private AdminService adminService;
+    DeliverableService deliverableService;
+    @Autowired
+    GradeService gradeService;
 
     @GetMapping("/courses")
     @ResponseBody
@@ -41,17 +41,23 @@ public class CourseController{
                             @RequestParam(name="time", required = false) String time){
 
 
-        if(adminService.loggedIn()){
-            if(sessionService.addCourse(p, number, session, term, time)){ return "Course generated"; }
-        }
 
-        return "Course failed";
+        if(sessionService.addCourse(p, number, session, term, time)){ return "Course generated"; }
+
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Course failed");
+        //return "Course failed";
     }
 
     @GetMapping("/courseRegistered")
     @ResponseBody
     public String courseRegistered(@RequestParam long cid){
         return sessionService.findById(cid).getRegistered().toString();
+    }
+
+    @GetMapping("/studentGrades")
+    @ResponseBody
+    public List<StudentGrade> studentGrades(){
+        return gradeService.findAll();
     }
 
 }

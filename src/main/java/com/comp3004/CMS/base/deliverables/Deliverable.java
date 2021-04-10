@@ -3,16 +3,19 @@ package com.comp3004.CMS.base.deliverables;
 import com.comp3004.CMS.base.Session;
 import com.comp3004.CMS.base.Student;
 import com.comp3004.CMS.base.StudentGrade;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 
 @Entity
 @Inheritance
-public class Deliverable {
+public class Deliverable extends Observable implements Observer {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,12 +29,15 @@ public class Deliverable {
     @ElementCollection
     private List<String> questions;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="deliverable_id")
+    @JoinColumn(name="course_id")
     private Session course;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "deliverable")
     Set<StudentGrade> studentGrades;
+
 
 
     //<editor-fold desc="Getter Setter">
@@ -77,9 +83,17 @@ public class Deliverable {
 
     public void setCourse(Session c){
         this.course = c;
+        c.getDeliverables().add(this);
+    }
+
+    public Session getCourse() {
+        return course;
     }
 
     public Set<StudentGrade> getStudentGrades() { return this.studentGrades; }
+
+
+
     //</editor-fold>
 
 
@@ -92,5 +106,17 @@ public class Deliverable {
                 ", due=" + due +
                 ", course=" + course +
                 '}';
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg.equals("course")){
+            course = (Session) o;
+        }
+        if(arg.equals("StudentGrade")){
+            studentGrades.add((StudentGrade) o);
+        }
+        setChanged();
+        notifyObservers();
     }
 }

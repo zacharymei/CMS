@@ -6,9 +6,10 @@ import com.comp3004.CMS.embeddable.GradeID;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.util.Observable;
 
 @Entity
-public class StudentGrade {
+public class StudentGrade extends Observable {
 
     @EmbeddedId
     private GradeID id;
@@ -23,7 +24,17 @@ public class StudentGrade {
     @ManyToOne
     //@MapsId("deliverableID")
     @JoinColumn(name = "deliverable_id")
+    //@JoinColumn(name = "course_id", referencedColumnName = "course_id")
     Deliverable deliverable;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    Session session;
+
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    Professor professor;
+
 
     public StudentGrade(){
 
@@ -33,7 +44,15 @@ public class StudentGrade {
         this.id = id;
         this.grade = grade;
         this.student = s;
+        addObserver(s);
         this.deliverable = d;
+        addObserver(d);
+        this.session = deliverable.getCourse();
+        addObserver(session);
+        this.professor = session.getProfessor();
+        addObserver(professor);
+        setChanged();
+        notifyObservers("StudentGrade");
     }
 
 
@@ -67,6 +86,22 @@ public class StudentGrade {
 
     public void setDeliverable(Deliverable deliverable) {
         this.deliverable = deliverable;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     @Override
