@@ -17,8 +17,17 @@ public class AdminController {
         if (adminService.loggedIn()){
             return "redirect:/addStudent.html";
         }
-        return "redirect:/addStudent.html";
-        //return "Error: You have to be ADMIN to add student.";
+        return "redirect:/accessDenied.html";
+        //return "Error: You have to log in as ADMIN to to perform this operation.";
+        //Redirect to a page with Error 404 (html)
+    }
+    @GetMapping ("/addProfessor")
+    public String addProfessor() {
+        if (adminService.loggedIn()){
+            return "redirect:/addProfessor.html";
+        }
+        return "redirect:/accessDenied.html";
+        //return "Error: You have to log in as ADMIN to perform this operation.";
         //Redirect to a page with Error 404 (html)
     }
 
