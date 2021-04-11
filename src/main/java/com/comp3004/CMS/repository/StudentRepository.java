@@ -26,7 +26,9 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     int countStudentByUsernameContains(String username);
 
-    @Query("select s.id from Student s where s.program = :program")
-    Set<Long> findStudentIdByProgramEquals(@Param("program") String program);
+    //@Query("select s.id from Student s where s.program = :program")
+    //Set<Student> findStudents(@Param("program") String program);
+
+    Set<Student> findStudentsByProgram(String program);
 
 }

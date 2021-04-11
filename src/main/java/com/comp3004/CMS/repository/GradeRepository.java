@@ -25,4 +25,6 @@ public interface GradeRepository extends JpaRepository<StudentGrade, GradeID> {
 
     Set<StudentGrade> findStudentGradesByDeliverableIn(Set<Deliverable> deliverable);
 
+    Set<StudentGrade> findStudentGradesByStudentIn(Set<Student> student);
+
 }

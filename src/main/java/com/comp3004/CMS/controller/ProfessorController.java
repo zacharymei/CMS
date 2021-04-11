@@ -1,5 +1,6 @@
 package com.comp3004.CMS.controller;
 
+import com.comp3004.CMS.base.Professor;
 import com.comp3004.CMS.base.Session;
 import com.comp3004.CMS.services.CourseService;
 import com.comp3004.CMS.services.DeliverableService;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Controller
 public class ProfessorController {
@@ -34,6 +37,12 @@ public class ProfessorController {
 
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Add Professor failed");
         //return "Add Student failed";
+    }
+
+    @GetMapping("/professors")
+    @ResponseBody
+    public List<Professor> professors(){
+        return professorService.findAll();
     }
 
     @PostMapping("/createDeliverable")

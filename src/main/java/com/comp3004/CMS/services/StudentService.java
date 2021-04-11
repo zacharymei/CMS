@@ -123,6 +123,10 @@ public class StudentService implements Observer{
         return false;
     }
 
+    public int printOne(){
+        return 1;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         studentRepository.save((Student) o);

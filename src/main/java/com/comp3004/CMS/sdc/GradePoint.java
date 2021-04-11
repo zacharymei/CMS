@@ -2,6 +2,8 @@ package com.comp3004.CMS.sdc;
 
 import com.comp3004.CMS.base.*;
 
+import java.util.Objects;
+
 public class GradePoint {
 
     private double grade;
@@ -65,6 +67,19 @@ public class GradePoint {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GradePoint that = (GradePoint) o;
+        return Double.compare(that.grade, grade) == 0 && Objects.equals(student, that.student) && Objects.equals(professor, that.professor) && Objects.equals(course, that.course);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(grade, student, professor, course);
     }
 
     @Override

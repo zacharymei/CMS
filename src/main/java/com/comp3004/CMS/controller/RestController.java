@@ -2,6 +2,7 @@ package com.comp3004.CMS.controller;
 
 import com.comp3004.CMS.base.*;
 import com.comp3004.CMS.repository.GradeRepository;
+import com.comp3004.CMS.repository.StudentRepository;
 import com.comp3004.CMS.sdc.GradePoint;
 import com.comp3004.CMS.sdc.GradingFilter;
 import com.comp3004.CMS.sdc.StudentFilter;
@@ -36,8 +37,10 @@ public class RestController {
     @Autowired
     private GradeRepository gradeRepository;
     @Autowired
-    @Qualifier("CourseFilter")
-    private GradingFilter gradingFilter;
+    StudentRepository studentRepository;
+//    @Autowired
+//    @Qualifier("StudentFilter")
+//    private GradingFilter gradingFilter;
 
     public static String role = "none";
 
@@ -49,7 +52,7 @@ public class RestController {
 
     @GetMapping("test")
     @ResponseBody
-    public String test(@RequestParam String program){
+    public Set<Student> test(@RequestParam String program){
 //        Long l1 = Long.valueOf(10000);
 //        Long l2 = Long.valueOf(10001);
 //        List<Long> l= Arrays.asList(l1, l2);
@@ -61,9 +64,14 @@ public class RestController {
 //
 //        }
 
-        r = gradingFilter.inProgram(program).toString();
+        StudentFilter f = new StudentFilter();
+        //System.out.println(f.inProgram());
+//
+//        r = f.inProgram(program).toString();
 
-        return r;
+        return studentRepository.findStudentsByProgram(program);
+
+        //return r;
     }
 
 
