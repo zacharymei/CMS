@@ -8,6 +8,7 @@ import com.comp3004.CMS.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -49,6 +50,13 @@ public class StudentController{
 
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Delete Student failed");
         //return "Delete Student failed";
+    }
+
+    @GetMapping("/student")
+    public String student(@RequestParam String username, Model model){
+        Student s = studentService.getStudentByUsername(username);
+        model.addAttribute("student", s);
+        return "student";
     }
 
 

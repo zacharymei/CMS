@@ -29,6 +29,8 @@ public class StudentService implements Observer{
         return studentRepository.findAll().toString();
     }
 
+    public Student getStudentByUsername(String username) {return studentRepository.findStudentByUsername(username); }
+
     public Student findById(long id){
         return studentRepository.findById(id);
     }
