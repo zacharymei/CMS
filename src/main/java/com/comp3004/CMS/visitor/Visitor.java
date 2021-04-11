@@ -6,8 +6,9 @@ import java.util.Observable;
 
 public interface Visitor {
 
-    void acceptUpdate(Student s, Observable o, Object arg);
-    void acceptUpdate(Professor p, Observable o, Object arg);
-    void acceptUpdate(Session c, Observable o, Object arg);
+    String visit(Student s);
+    String visit(Professor p);
+    String visit(Session c);
+
 
 }

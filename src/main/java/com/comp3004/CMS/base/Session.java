@@ -2,6 +2,7 @@ package com.comp3004.CMS.base;
 
 import com.comp3004.CMS.base.deliverables.Deliverable;
 import com.comp3004.CMS.base.deliverables.factory.DeliverableFactory;
+import com.comp3004.CMS.visitor.Visitor;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -142,6 +143,10 @@ public class Session extends Course implements Observer {
         if(arg.equals("Deliverable")){
             deliverables.add((Deliverable) o);
         }
+    }
+
+    public String accept(Visitor v){
+        return v.visit(this);
     }
 
 }

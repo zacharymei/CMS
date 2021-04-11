@@ -38,9 +38,7 @@ public class RestController {
     private GradeRepository gradeRepository;
     @Autowired
     StudentRepository studentRepository;
-//    @Autowired
-//    @Qualifier("StudentFilter")
-//    private GradingFilter gradingFilter;
+
 
     public static String role = "none";
 
@@ -50,29 +48,6 @@ public class RestController {
         return "redirect:/login";
     }
 
-    @GetMapping("test")
-    @ResponseBody
-    public Set<Student> test(@RequestParam String program){
-//        Long l1 = Long.valueOf(10000);
-//        Long l2 = Long.valueOf(10001);
-//        List<Long> l= Arrays.asList(l1, l2);
-
-        String r = "";
-
-//        for(StudentGrade sg: gradeRepository.findStudentGradesByStudentIdIn(l)){
-//            r = r + sg.getGrade() + sg.getStudent().toString();
-//
-//        }
-
-        StudentFilter f = new StudentFilter();
-        //System.out.println(f.inProgram());
-//
-//        r = f.inProgram(program).toString();
-
-        return studentRepository.findStudentsByProgram(program);
-
-        //return r;
-    }
 
 
 
@@ -98,6 +73,7 @@ public class RestController {
         }
         return "redirect:/accessDenied.html";
     }
+
 
     @PostMapping("/logout")
     @ResponseBody

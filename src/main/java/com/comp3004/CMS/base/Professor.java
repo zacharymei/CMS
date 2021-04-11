@@ -1,6 +1,7 @@
 package com.comp3004.CMS.base;
 
 
+import com.comp3004.CMS.visitor.Visitor;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.util.Observable;
 import java.util.Set;
 
 @Entity
-@SequenceGenerator(name="userGen", sequenceName = "professorSeq", initialValue=10000, allocationSize=9999)
+@SequenceGenerator(name="userGen", sequenceName = "professorSeq", initialValue=20000, allocationSize=9999)
 public class Professor extends User{
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="userGen")
@@ -25,9 +26,9 @@ public class Professor extends User{
     @OneToMany(mappedBy="professor")
     private Set<Session> courses;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "professor")
-    private Set<StudentGrade> studentGrades;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "professor")
+//    private Set<StudentGrade> studentGrades;
 
     //constructor
     public Professor(){
@@ -98,13 +99,17 @@ public class Professor extends User{
 
     @Override
     public void update(Observable o, Object arg) {
-        if(arg.equals("StudentGrade")){
-            studentGrades.add((StudentGrade) o);
-        }
+//        if(arg.equals("StudentGrade")){
+//            studentGrades.add((StudentGrade) o);
+//        }
         if(arg.equals("Session")){
             courses.add((Session) o);
         }
         setChanged();
         notifyObservers();
+    }
+
+    public String accept(Visitor v){
+        return v.visit(this);
     }
 }

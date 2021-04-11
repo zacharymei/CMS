@@ -9,13 +9,13 @@ public class GradePoint {
     private double grade;
     private Student student = null;
     private Professor professor = null;
-    private Course course = null;
+    private Session course = null;
 
     public GradePoint(){
 
     }
 
-    public GradePoint(double grade, Student s, Professor p, Course c){
+    public GradePoint(double grade, Student s, Professor p, Session c){
         this.grade = grade;
         this.student = s;
         this.professor = p;
@@ -32,7 +32,7 @@ public class GradePoint {
         this.professor = p;
     }
 
-    public GradePoint(double grade, Course c){
+    public GradePoint(double grade, Session c){
         this.grade = grade;
         this.course = c;
     }
@@ -61,11 +61,11 @@ public class GradePoint {
         this.professor = professor;
     }
 
-    public Course getCourse() {
+    public Session getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(Session course) {
         this.course = course;
     }
 

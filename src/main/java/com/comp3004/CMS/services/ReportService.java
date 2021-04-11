@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -25,6 +26,7 @@ public class ReportService {
     public Set<GradePoint> filterByProgram(String program, Set<String> target){
         CompoundFilter gradingFilter = new CompoundFilter();
 
+
         if(target.contains("student")){
             gradingFilter.add(beanFactory.getBean(studentFilter.getClass()));
         }
@@ -35,7 +37,10 @@ public class ReportService {
             gradingFilter.add(beanFactory.getBean(courseFilter.getClass()));
         }
 
-        return gradingFilter.inProgram(program);
+        Set<GradePoint> output = gradingFilter.inProgram(program);
+
+        return output;
     }
+
 
 }
