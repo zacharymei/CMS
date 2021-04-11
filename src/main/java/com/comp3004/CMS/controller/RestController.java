@@ -76,9 +76,18 @@ public class RestController {
     }
 
     @PostMapping("/login")
-    @ResponseBody
+//    @ResponseBody
     public String userlogin(@RequestParam String username, @RequestParam String password, @RequestParam String role){
-
+        String userRole = authorization(role, username, password);
+        if(userRole == "student"){
+            return "redirect:/student.html";
+        }
+        if(userRole == "admin"){
+            return "redirect:/admin.html";
+        }
+        if(userRole == "professor"){
+            return "redirect:/professor.html";
+        }
         return authorization(role, username, password);
     }
 
