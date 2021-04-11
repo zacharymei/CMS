@@ -50,7 +50,9 @@ public class StudentGrade extends Observable {
         this.session = deliverable.getCourse();
         addObserver(session);
         this.professor = session.getProfessor();
-        addObserver(professor);
+//        if(professor != null){
+//            addObserver(professor);
+//        }
         setChanged();
         notifyObservers("StudentGrade");
     }

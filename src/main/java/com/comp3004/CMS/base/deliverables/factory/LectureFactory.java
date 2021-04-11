@@ -12,10 +12,10 @@ public class LectureFactory extends DeliverableFactory{
     public Deliverable createDeliverable(String type, Session c) {
 
         if(type.equals("video")){
-            return new Lecture("Lecture 1", 0, null, c);
+            return new Lecture("Lecture video", 0, null, c);
         }
         else if(type.equals("note")){
-            return new Exam("Lecture Notes", 0, null, c);
+            return new Lecture("Lecture Notes", 0, null, c);
         }
 
         return null;

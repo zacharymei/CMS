@@ -1,6 +1,7 @@
 package com.comp3004.CMS.base;
 
 import com.comp3004.CMS.base.deliverables.Deliverable;
+import com.comp3004.CMS.visitor.Visitor;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -116,4 +117,9 @@ public class Student extends User{
         setChanged();
         notifyObservers();
     }
+
+    public String accept(Visitor v){
+        return v.visit(this);
+    }
+
 }

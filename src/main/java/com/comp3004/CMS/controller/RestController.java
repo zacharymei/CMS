@@ -2,6 +2,7 @@ package com.comp3004.CMS.controller;
 
 import com.comp3004.CMS.base.*;
 import com.comp3004.CMS.repository.GradeRepository;
+import com.comp3004.CMS.repository.StudentRepository;
 import com.comp3004.CMS.sdc.GradePoint;
 import com.comp3004.CMS.sdc.GradingFilter;
 import com.comp3004.CMS.sdc.StudentFilter;
@@ -36,8 +37,8 @@ public class RestController {
     @Autowired
     private GradeRepository gradeRepository;
     @Autowired
-    @Qualifier("CourseFilter")
-    private GradingFilter gradingFilter;
+    StudentRepository studentRepository;
+
 
     public static String role = "none";
 
@@ -47,24 +48,6 @@ public class RestController {
         return "redirect:/login";
     }
 
-    @GetMapping("test")
-    @ResponseBody
-    public String test(@RequestParam String program){
-//        Long l1 = Long.valueOf(10000);
-//        Long l2 = Long.valueOf(10001);
-//        List<Long> l= Arrays.asList(l1, l2);
-
-        String r = "";
-
-//        for(StudentGrade sg: gradeRepository.findStudentGradesByStudentIdIn(l)){
-//            r = r + sg.getGrade() + sg.getStudent().toString();
-//
-//        }
-
-        r = gradingFilter.inProgram(program).toString();
-
-        return r;
-    }
 
 
 
@@ -90,6 +73,7 @@ public class RestController {
         }
         return "redirect:/accessDenied.html";
     }
+
 
     @PostMapping("/logout")
     @ResponseBody

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter</title>
+</head>
+<body>
+
+    <form method="post" action="/filter">
+        <select id="filter" name="filter">
+            <option>Program</option>
+        </select>
+        <input type="text" id="value" name="value">
+        <input type="checkbox" id="student" name="student">
+        <label for="student">Student</label>
+        <input type="checkbox" id="professor" name="professor">
+        <label for="professor">Professor</label>
+        <input type="checkbox" id="course" name="course">
+        <label for="course">Course</label>
+        <input type="submit">
+    </form>
+
+    <ul>
+        <th:foreach th:each="p : ${gradePoints}">
+            <li th:text="${p}">
+<!--                Grade: [[${grade}]] <br>-->
+<!--                Student: [[${student}]] <br>-->
+<!--                Professor: [[${professor}]] <br>-->
+<!--                Course: [[${course}]]-->
+            </li>
+        </th:foreach>
+    </ul>
+
+
+</body>
+</html>

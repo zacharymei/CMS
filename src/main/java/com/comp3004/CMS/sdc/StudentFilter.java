@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service("StudentFilter")
+@Service
 public class StudentFilter implements GradingFilter{
 
     @Autowired
@@ -33,14 +33,20 @@ public class StudentFilter implements GradingFilter{
     public Set<GradePoint> inProgram(String program){
         Set<GradePoint> points = new HashSet<>();
 
-        Set<Long> student_ids = studentRepository.findStudentIdByProgramEquals(program);
-        Set<StudentGrade> studentGrades = gradeRepository.findStudentGradesByStudentIdIn(student_ids);
+        Set<Student> students = studentRepository.findStudentsByProgram(program);
+
+        Set<StudentGrade> studentGrades = gradeRepository.findStudentGradesByStudentIn(students);
 
         for(StudentGrade sg : studentGrades){
             points.add(new GradePoint(sg.getGrade(), sg.getStudent(), sg.getProfessor(), sg.getSession()));
         }
 
         return points;
+    }
+
+    public int printOne(){
+        StudentService ss = new StudentService();
+        return ss.printOne();
     }
 
 }
