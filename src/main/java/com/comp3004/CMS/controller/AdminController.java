@@ -32,6 +32,16 @@ public class AdminController {
         //Redirect to a page with Error 404 (html)
     }
 
+    @GetMapping ("/addCourse")
+    public String addCourse() {
+        if (adminService.loggedIn()){
+            return "redirect:/addCourse.html";
+        }
+        return "redirect:/accessDenied.html";
+        //return "Error: You have to be ADMIN to add student.";
+        //Redirect to a page with Error 404 (html)
+    }
+
 
 
 }

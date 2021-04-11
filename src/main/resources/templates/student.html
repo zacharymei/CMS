@@ -2,9 +2,11 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Student Page</title>
+    <title>Student Home Page</title>
 </head>
 <body>
+    <h1>Course Management System</h1>
     <p th:text="${student.courses}"></p>
+    <button type="button" onclick="window.location.href='/register.html'">Register Course</button>
 </body>
 </html>

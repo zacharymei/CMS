@@ -83,7 +83,7 @@ public class RestController {
             return "redirect:/student?username="+username;
         }
         if (userRole.equals("professor")){
-            return "redirect:/professor.html";
+            return "redirect:/professor?username="+username;
         }
         if (userRole.equals("admin")){
             return "redirect:/admin.html";

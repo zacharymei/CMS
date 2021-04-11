@@ -34,6 +34,8 @@ public class ProfessorService implements Observer {
         return professorRepository.findById(id);
     }
 
+    public Professor getProfessorByUsername(String username) {return professorRepository.findProfessorByUsername(username); }
+
     public boolean addProfessor(String firstname, String lastname, String program, String password){
 
         if(!adminService.loggedIn()){

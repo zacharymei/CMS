@@ -1,6 +1,8 @@
 package com.comp3004.CMS.controller;
 
+import com.comp3004.CMS.base.Professor;
 import com.comp3004.CMS.base.Session;
+import com.comp3004.CMS.base.Student;
 import com.comp3004.CMS.services.CourseService;
 import com.comp3004.CMS.services.DeliverableService;
 import com.comp3004.CMS.services.ProfessorService;
@@ -8,6 +10,7 @@ import com.comp3004.CMS.services.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +37,13 @@ public class ProfessorController {
 
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Add Professor failed");
         //return "Add Student failed";
+    }
+
+    @GetMapping("/professor")
+    public String professor(@RequestParam String username, Model model){
+        Professor p = professorService.getProfessorByUsername(username);
+        model.addAttribute("professor", p);
+        return "professor";
     }
 
     @PostMapping("/createDeliverable")
