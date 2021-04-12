@@ -5,6 +5,8 @@ import com.comp3004.CMS.sdc.GradePoint;
 import com.comp3004.CMS.services.ReportService;
 import com.comp3004.CMS.visitor.LogInfo;
 import com.comp3004.CMS.visitor.Visitor;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.awt.font.GraphicAttribute;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,7 +50,8 @@ public class ReportController {
                 return "filter";
             }
             Set<GradePoint> gradePoints = reportService.filterByProgram(value, targets);
-            Set<String> info = new HashSet<>();
+            JSONArray out = new JSONArray();
+
             Visitor logInfo = new LogInfo();
             for(GradePoint sg : gradePoints){
                 String grade = Double.toString(sg.getGrade());
@@ -58,12 +62,16 @@ public class ReportController {
                 }
                 String c = sg.getCourse().accept(logInfo);
 
+                JSONObject point = new JSONObject();
+                point.put("grade", sg.getGrade());
+                point.put("student", s);
+                point.put("professor", p);
+                point.put("course", c);
 
-                info.add("Grade: " + grade + s + p + c);
+                out.put(point);
             }
 
-
-            model.addAttribute("gradePoints", info);
+            model.addAttribute("gradePoints", out.toString());
         }
 
 

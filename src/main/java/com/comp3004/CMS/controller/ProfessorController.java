@@ -45,6 +45,11 @@ public class ProfessorController {
         return professorService.findAll();
     }
 
+    @GetMapping("/createDeliverable")
+    public String getCreateDeliverable(){
+        return "redirect:/addDeliverable.html";
+    }
+
     @PostMapping("/createDeliverable")
     @ResponseBody
     public String createDeliverable(@RequestParam long cid, @RequestParam String deliverable, @RequestParam String type){
