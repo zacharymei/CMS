@@ -78,7 +78,7 @@ public class StudentService implements Observer{
 
     public boolean register(long student_id, Session c){
 
-        if(!adminService.loggedIn() && !RestController.role.equals("Student")){
+        if(!adminService.loggedIn() && !RestController.role.equals("student")){
             return false;
         }
 
@@ -89,7 +89,7 @@ public class StudentService implements Observer{
 
     public boolean drop(long sid, Session c){
 
-        if(!adminService.loggedIn() && !RestController.role.equals("Student")){
+        if(!adminService.loggedIn() && !RestController.role.equals("student")){
             return false;
         }
 

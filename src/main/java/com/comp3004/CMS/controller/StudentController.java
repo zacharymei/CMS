@@ -66,11 +66,11 @@ public class StudentController{
 
     @GetMapping("/register")
     public String register(Model model){
-        Map<Long,String> ja = new HashMap();
+        Map<String,String> ja = new HashMap();
         Visitor v1 = new LogInfo();
         List<Session> allSession = sessionService.findAll();
         for (Session s:allSession){
-            ja.put(((Course)(s)).getId(),s.accept(v1));
+            ja.put(Long.toString(((Course)(s)).getId()),s.accept(v1));
         }
         model.addAttribute("allSession", ja);
         return "register";
