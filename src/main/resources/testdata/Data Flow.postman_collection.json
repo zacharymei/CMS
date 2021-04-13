@@ -1,0 +1,7861 @@
+{
+	"info": {
+		"_postman_id": "7dc9edac-a7d1-407b-8b99-318afc6950dd",
+		"name": "Data Flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/login?username=admin&password=admin&role=admin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "password",
+									"value": "admin"
+								},
+								{
+									"key": "role",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "initialStudent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/addProfessor?firstname=student&lastname=student&program=COMP&password=student",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addProfessor"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "student"
+								},
+								{
+									"key": "lastname",
+									"value": "student"
+								},
+								{
+									"key": "program",
+									"value": "COMP"
+								},
+								{
+									"key": "password",
+									"value": "student"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "initialProfessor",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/addProfessor?firstname=professor&lastname=professor&program=COMP&password=professor",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addProfessor"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "professor"
+								},
+								{
+									"key": "lastname",
+									"value": "professor"
+								},
+								{
+									"key": "program",
+									"value": "COMP"
+								},
+								{
+									"key": "password",
+									"value": "professor"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loop",
+			"item": [
+				{
+					"name": "Student",
+					"item": [
+						{
+							"name": "addStudent",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 20",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 19",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 18",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 17",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 16",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 15",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 14",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 13",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 12",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 11",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 9",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 8",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 7",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 6",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 5",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 4",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 3",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addStudent Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"i = _.random(0, 2)\r",
+											"\r",
+											"if(i == 0){\r",
+											"    pm.collectionVariables.set(\"program\", \"COMP\");\r",
+											"}\r",
+											"if(i == 1){\r",
+											"    pm.collectionVariables.set(\"program\", \"ECON\");\r",
+											"}\r",
+											"if(i == 2){\r",
+											"    pm.collectionVariables.set(\"program\", \"BUSI\");\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addStudent?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addStudent"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Course",
+					"item": [
+						{
+							"name": "addCourse",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 20",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 19",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 18",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 17",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 16",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 15",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 14",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 13",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 12",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 11",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 9",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 8",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 7",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 6",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 5",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 4",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 3",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addCourse Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"a = _.random(1, 3)\r",
+											"b = _.random(1, 9)\r",
+											"\r",
+											"number = a.toString() + '00' + b.toString()\r",
+											"pm.collectionVariables.set(\"number\", number);\r",
+											"\r",
+											"\r",
+											"\r",
+											"s = _.random(0, 1)\r",
+											"ss = ['A', 'B']\r",
+											"pm.collectionVariables.set(\"session\", ss[s]);\r",
+											"\r",
+											"s = _.random(0, 2)\r",
+											"ss = ['Fall', 'Winter', 'Summer']\r",
+											"pm.collectionVariables.set(\"term\", ss[s]);\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addCourse?program={{program}}&number={{number}}&session={{session}}&term={{term}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addCourse"
+									],
+									"query": [
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "number",
+											"value": "{{number}}"
+										},
+										{
+											"key": "session",
+											"value": "{{session}}"
+										},
+										{
+											"key": "term",
+											"value": "{{term}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Professor",
+					"item": [
+						{
+							"name": "addProfessor",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 20",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 19",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 18",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 17",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 16",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 15",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 14",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 13",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 12",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 11",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 9",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 8",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 7",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 6",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 5",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 4",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 3",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addProfessor Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"s = _.random(0, 2)\r",
+											"\r",
+											"ss = ['COMP', 'ECON', 'BUSI']\r",
+											"pm.collectionVariables.set(\"program\", ss[s]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/addProfessor?firstname={{$randomFirstName}}&lastname={{$randomLastName}}&program={{program}}&password=123",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"addProfessor"
+									],
+									"query": [
+										{
+											"key": "firstname",
+											"value": "{{$randomFirstName}}"
+										},
+										{
+											"key": "lastname",
+											"value": "{{$randomLastName}}"
+										},
+										{
+											"key": "program",
+											"value": "{{program}}"
+										},
+										{
+											"key": "password",
+											"value": "123"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"item": [
+						{
+							"name": "regiserCourse",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 20",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 19",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 18",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 17",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 16",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 15",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 14",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 13",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 12",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 11",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 9",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 8",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 7",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 6",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 5",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 4",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 3",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "regiserCourse Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/register?sid={{sid}}&cid={{cid}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"register"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "AssignProfessor",
+					"item": [
+						{
+							"name": "assign",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 20",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 19",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 18",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 17",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 16",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 15",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 14",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 13",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 12",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 11",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 9",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 8",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 7",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 6",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 5",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 4",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 3",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "assign Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"pid\", _.random(20000, 20019));\r",
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/assignProfessor?pid={{pid}}&cid={{cid}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignProfessor"
+									],
+									"query": [
+										{
+											"key": "pid",
+											"value": "{{pid}}"
+										},
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "LoginProfessor",
+			"item": [
+				{
+					"name": "loginProfessor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/login?username=professorprofessor&password=professor&role=professor",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "professorprofessor"
+								},
+								{
+									"key": "password",
+									"value": "professor"
+								},
+								{
+									"key": "role",
+									"value": "professor"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "loop2",
+			"item": [
+				{
+					"name": "addDeliverable",
+					"item": [
+						{
+							"name": "addDeliverable",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 20",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 19",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 18",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 17",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 16",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 15",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 14",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 13",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 12",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 11",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 9",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 8",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 7",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 6",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 5",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 4",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 3",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addDeliverable Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"cid\", _.random(10000, 10019));\r",
+											"\r",
+											"i = _.random(0, 2)\r",
+											"di = [\"assignment\", \"exam\", \"lecture\"]\r",
+											"deliverable = di[i];\r",
+											"pm.collectionVariables.set(\"deliverable\", deliverable);\r",
+											"\r",
+											"j = _.random(0, 1)\r",
+											"if(i == 0){ \r",
+											"    tj = [\"small\", \"big\"]\r",
+											"}\r",
+											"if(i == 1){ \r",
+											"    tj = [\"midterm\", \"final\"]\r",
+											"}\r",
+											"if(i == 2){ \r",
+											"    tj = [\"video\", \"note\"]\r",
+											"}\r",
+											"type = tj[j]\r",
+											"pm.collectionVariables.set(\"type\", type);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/createDeliverable?cid={{cid}}&deliverable={{deliverable}}&type={{type}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"createDeliverable"
+									],
+									"query": [
+										{
+											"key": "cid",
+											"value": "{{cid}}"
+										},
+										{
+											"key": "deliverable",
+											"value": "{{deliverable}}"
+										},
+										{
+											"key": "type",
+											"value": "{{type}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "gradeDeliverable",
+					"item": [
+						{
+							"name": "gradeDeliverable",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 20",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 19",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 18",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 17",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 16",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 15",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 14",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 13",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 12",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 11",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 9",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 8",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 7",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 6",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 5",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 4",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 3",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy 2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gradeDeliverable Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"sid\", _.random(10000, 10019));\r",
+											"pm.collectionVariables.set(\"did\", _.random(1, 19));\r",
+											"pm.collectionVariables.set(\"grade\", _.random(0, 100));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/gradeDeliverable?sid={{sid}}&did={{did}}&grade={{grade}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"gradeDeliverable"
+									],
+									"query": [
+										{
+											"key": "sid",
+											"value": "{{sid}}"
+										},
+										{
+											"key": "did",
+											"value": "{{did}}"
+										},
+										{
+											"key": "grade",
+											"value": "{{grade}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "program",
+			"value": ""
+		},
+		{
+			"key": "number",
+			"value": ""
+		},
+		{
+			"key": "session",
+			"value": ""
+		},
+		{
+			"key": "term",
+			"value": ""
+		},
+		{
+			"key": "sid",
+			"value": ""
+		},
+		{
+			"key": "cid",
+			"value": ""
+		},
+		{
+			"key": "pid",
+			"value": ""
+		},
+		{
+			"key": "deliverable",
+			"value": ""
+		},
+		{
+			"key": "type",
+			"value": ""
+		},
+		{
+			"key": "did",
+			"value": ""
+		},
+		{
+			"key": "grade",
+			"value": ""
+		}
+	]
+}

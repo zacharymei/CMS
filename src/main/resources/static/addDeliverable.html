@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Deliverable</title>
+</head>
+<body>
+
+<form method="post" action="/createDeliverable">
+    <h3>Assignment</h3>
+    <input type="hidden" name="deliverable" value="assignment">
+    <label>Course ID</label><br>
+    <input type="number" name="cid">
+    <select name="type">
+        <option name="small">Small Assignment</option>
+        <option name="big">Big Assignment</option>
+    </select>
+    <input type="submit">
+</form>
+<br><br>
+
+<form method="post" action="/createDeliverable">
+    <h3>Exam</h3>
+    <input type="hidden" name="deliverable" value="assignment">
+    <label>Course ID</label><br>
+    <input type="number" name="cid">
+    <select name="type">
+        <option name="midterm">Midterm Exam</option>
+        <option name="final">Final Exam</option>
+    </select>
+    <input type="submit">
+</form>
+<br><br>
+
+<form method="post" action="/createDeliverable">
+    <h3>Lecture</h3>
+    <input type="hidden" name="deliverable" value="assignment">
+    <label>Course ID</label><br>
+    <input type="number" name="cid">
+    <select name="type">
+        <option name="video">Lecture Video</option>
+        <option name="note">Course Notes</option>
+    </select>
+    <input type="submit">
+</form>
+
+
+
+
+</body>
+</html>
