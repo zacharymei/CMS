@@ -8,12 +8,13 @@
 
 <form method="post" action="/createDeliverable">
     <h3>Assignment</h3>
-    <input type="hidden" name="deliverable" value="assignment">
     <label>Course ID</label><br>
     <input type="number" name="cid">
+    <input type="hidden" name="deliverable" value="assignment">
+
     <select name="type">
-        <option name="small">Small Assignment</option>
-        <option name="big">Big Assignment</option>
+        <option name="small">small</option>
+        <option name="big">big</option>
     </select>
     <input type="submit">
 </form>
@@ -21,12 +22,12 @@
 
 <form method="post" action="/createDeliverable">
     <h3>Exam</h3>
-    <input type="hidden" name="deliverable" value="assignment">
+    <input type="hidden" name="deliverable" value="exam">
     <label>Course ID</label><br>
     <input type="number" name="cid">
     <select name="type">
-        <option name="midterm">Midterm Exam</option>
-        <option name="final">Final Exam</option>
+        <option name="midterm">midterm</option>
+        <option name="final">final</option>
     </select>
     <input type="submit">
 </form>
@@ -34,12 +35,12 @@
 
 <form method="post" action="/createDeliverable">
     <h3>Lecture</h3>
-    <input type="hidden" name="deliverable" value="assignment">
+    <input type="hidden" name="deliverable" value="lecture">
     <label>Course ID</label><br>
     <input type="number" name="cid">
     <select name="type">
-        <option name="video">Lecture Video</option>
-        <option name="note">Course Notes</option>
+        <option name="video">video</option>
+        <option name="note">note</option>
     </select>
     <input type="submit">
 </form>
