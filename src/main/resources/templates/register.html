@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Course</title>
+</head>
+<body>
+    <h1>Register a course</h1>
+    <h3>Confirm your student ID: </h3>
+    <input id="studentId" type="text"><br>
+    <ul>
+        <th:foreach th:each="se:${allSession.keySet()}">
+            <li>
+                <form method="post" action="/register">
+                    <input type="hidden" name="sid" value="javascript:document.getElementById('studentId').value">
+                    <input type="hidden" name="cid" th:value="${se}">
+                    <label th:text="${allSession.get(se)}"></label>
+                    <input type="submit">
+                </form>
+            </li>
+        </th:foreach>
+    </ul>
+
+</body>
+</html>

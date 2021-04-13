@@ -1,10 +1,15 @@
 package com.comp3004.CMS.controller;
 
+import com.comp3004.CMS.base.Course;
 import com.comp3004.CMS.base.Session;
 import com.comp3004.CMS.base.Student;
 import com.comp3004.CMS.services.AdminService;
 import com.comp3004.CMS.services.SessionService;
 import com.comp3004.CMS.services.StudentService;
+import com.comp3004.CMS.visitor.LogInfo;
+import com.comp3004.CMS.visitor.Visitor;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -12,7 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class StudentController{
@@ -57,6 +62,18 @@ public class StudentController{
         Student s = studentService.getStudentByUsername(username);
         model.addAttribute("student", s);
         return "student";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model){
+        Map<Long,String> ja = new HashMap();
+        Visitor v1 = new LogInfo();
+        List<Session> allSession = sessionService.findAll();
+        for (Session s:allSession){
+            ja.put(((Course)(s)).getId(),s.accept(v1));
+        }
+        model.addAttribute("allSession", ja);
+        return "register";
     }
 
 
