@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Professor</title>
+</head>
+<body>
+
+    <h2>Professors: </h2>
+    <ul>
+        <th:foreach th:each="prof:${profs.keySet()}">
+            <li th:inline="text">
+                ID: [[${prof}]]   [[${profs.get(prof)}]]
+            </li>
+        </th:foreach>
+
+    </ul>
+    <br>
+    <h2>Courses</h2>
+    <ul>
+        <th:foreach th:each="c:${courses.keySet()}">
+            <li th:inline="text">
+                ID [[${c}]]   [[${courses.get(c)}]]
+            </li>
+        </th:foreach>
+
+    </ul>
+
+    <form method="post" action="/assignProfessor">
+        <label>Course ID</label><br>
+        <input type="number" name="cid"><br>
+        <label>Professor ID</label><br>
+        <input type="number" name="pid"><br>
+        <input type="submit">
+    </form>
+
+
+</body>
+</html>

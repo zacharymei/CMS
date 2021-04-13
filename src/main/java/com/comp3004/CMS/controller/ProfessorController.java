@@ -3,10 +3,10 @@ package com.comp3004.CMS.controller;
 import com.comp3004.CMS.base.Professor;
 import com.comp3004.CMS.base.Session;
 import com.comp3004.CMS.base.Student;
-import com.comp3004.CMS.services.CourseService;
-import com.comp3004.CMS.services.DeliverableService;
-import com.comp3004.CMS.services.ProfessorService;
-import com.comp3004.CMS.services.SessionService;
+import com.comp3004.CMS.base.deliverables.Deliverable;
+import com.comp3004.CMS.services.*;
+import com.comp3004.CMS.visitor.LogInfo;
+import com.comp3004.CMS.visitor.Visitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 public class ProfessorController {
 
@@ -26,6 +29,8 @@ public class ProfessorController {
     SessionService sessionService;
     @Autowired
     private ProfessorService professorService;
+    @Autowired
+    StudentService studentService;
 
     @PostMapping ("/addProfessor")
     @ResponseBody
@@ -71,6 +76,22 @@ public class ProfessorController {
         deliverableService.gradeDeliverable(sid, did, grade);
 
         return "Grade Successful";
+    }
+
+    @GetMapping("/gradeDeliverable")
+    public String getGradeDeliverable(Model model){
+        Map<String, String> students= new HashMap<>();
+        Map<String, String> deliverables = new HashMap<>();
+        Visitor log = new LogInfo();
+        for(Student s : studentService.findAll()){
+            students.put(Long.toString(s.getId()), s.accept(log));
+        }
+        for(Deliverable d : deliverableService.findAll()){
+            deliverables.put(Long.toString(d.getId()), d.getName());
+        }
+        model.addAttribute("students", students);
+        model.addAttribute("deliverables", deliverables);
+        return "gradeDeliverable";
     }
 
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Deliverable</title>
+</head>
+<body>
+<h2>Students: </h2>
+<ul>
+    <th:foreach th:each="s:${students.keySet()}">
+        <li th:inline="text">
+            ID: [[${s}]]   [[${students.get(s)}]]
+        </li>
+    </th:foreach>
+
+</ul>
+
+<h2>Deliverables: </h2>
+<ul>
+    <th:foreach th:each="d:${deliverables.keySet()}">
+        <li th:inline="text">
+            ID: [[${d}]]   [[${deliverables.get(d)}]]
+        </li>
+    </th:foreach>
+
+</ul>
+
+<form method="post" action="/gradeDeliverable">
+    <label>Student ID</label><br>
+    <input type="number" name="sid"><br>
+    <label>Deliverable ID</label><br>
+    <input type="number" name="did"><br>
+    <label>Grade</label><br>
+    <input type="number" name="grade"><br>
+    <input type="submit">
+</form>
+
+</body>
+</html>

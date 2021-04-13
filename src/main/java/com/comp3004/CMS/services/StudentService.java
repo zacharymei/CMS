@@ -23,7 +23,7 @@ public class StudentService implements Observer{
     @Autowired
     RestController restController;
 
-
+    public List<Student> findAll(){ return studentRepository.findAll(); }
 
     public String showAll(){
         return studentRepository.findAll().toString();
